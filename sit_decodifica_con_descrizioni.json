@@ -1,0 +1,674 @@
+{
+  "1": {
+    "nome": "Uffici amministrativi",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: uffici amministrativi"
+  },
+  "3": {
+    "nome": "Attrezzature assistenziali",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: attrezzature assistenziali"
+  },
+  "4": {
+    "nome": "Aeroporto",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: aeroporto"
+  },
+  "5": {
+    "nome": "Attrezzature per l'istruzione",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale per l'istruzione"
+  },
+  "6": {
+    "nome": "Attrezz. di inter. gener. a serv. dell'interporto",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: attrezzature di interesse generale a servizio dell'interporto"
+  },
+  "7": {
+    "nome": "Attrezz. di inter. gener. a serv. della zona ind.",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: attrezzature di interesse generale a servizio della zona industriale"
+  },
+  "8": {
+    "nome": "Attrezzature per l'igiene e la sanità",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: attrezzature per l'igiene e la sanità"
+  },
+  "9": {
+    "nome": "Attrezzature sociali",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: attrezzature sociali"
+  },
+  "10": {
+    "nome": "Attrezzature sportive e per il tempo libero",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#73",
+    "articolo": 29,
+    "definizione": "Area per servizi di interesse generale: attrezzature sportive e per il tempo libero"
+  },
+  "11": {
+    "nome": "Azienda trasporto pubblico",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: azienda trasporto pubblico"
+  },
+  "12": {
+    "nome": "Autosilos",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: autosilos"
+  },
+  "13": {
+    "nome": "Carceri",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: carceri"
+  },
+  "14": {
+    "nome": "Cimiteri",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: cimiteri"
+  },
+  "15": {
+    "nome": "Centri di interesse scientifico",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: centri di interesse scientifico e culturale"
+  },
+  "16": {
+    "nome": "Dogana",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: dogana"
+  },
+  "17": {
+    "nome": "Fiera",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: fiera ed attività connesse"
+  },
+  "18": {
+    "nome": "Impianti annonari",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: impianti annonari"
+  },
+  "19": {
+    "nome": "Impianti militari",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: impianti militari"
+  },
+  "20": {
+    "nome": "Istituzioni religiose di livello urbano",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: istituzioni religiose a livello urbano"
+  },
+  "21": {
+    "nome": "Impianti tecnologici",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: impianti tecnologici"
+  },
+  "22": {
+    "nome": "Poste e telefoni",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: poste e telefoni"
+  },
+  "23": {
+    "nome": "Stazione autolinee",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: stazione autolinee"
+  },
+  "24": {
+    "nome": "Università",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: università"
+  },
+  "25": {
+    "nome": "Vigili del fuoco,polizia,carabinieri",
+    "gruppo": "servizi_generale",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area per servizi di interesse generale: vigili del fuoco, polizia, carabinieri"
+  },
+  "26": {
+    "nome": "Zona peep",
+    "gruppo": "edilizia_economica_pop",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#37",
+    "articolo": "18 bis",
+    "definizione": "Area inclusa nel piano di zona per l'edilizia economica e popolare"
+  },
+  "27": {
+    "nome": "Area di rispetto",
+    "gruppo": "aree_rispetto",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#83",
+    "articolo": 33,
+    "definizione": "con sovrapposta area di rispetto"
+  },
+  "28": {
+    "nome": "Attrezzature stradali",
+    "gruppo": "dir_comm_ind",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#71",
+    "articolo": 27,
+    "definizione": "Area per attrezzature stradali %"
+  },
+  "29": {
+    "nome": "Zona direzionale",
+    "gruppo": "dir_comm_ind",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#37",
+    "articolo": 19,
+    "definizione": "Zona direzionale %"
+  },
+  "30": {
+    "nome": "Zona agricola - sottozona E2",
+    "gruppo": "zone_agricole",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#44",
+    "articolo": 20,
+    "definizione": "Zona agricola E: sottozona E2"
+  },
+  "31": {
+    "nome": "Zona agricola - sottozona E2T",
+    "gruppo": "zone_agricole",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#44",
+    "articolo": 20,
+    "definizione": "Zona agricola E: sottozona E2 di Tutela"
+  },
+  "32": {
+    "nome": "Zona agricola - sottozona E3T",
+    "gruppo": "zone_agricole",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#44",
+    "articolo": 20,
+    "definizione": "Zona agricola E: sottozona E3 di Tutela"
+  },
+  "33": {
+    "nome": "Zona erp",
+    "gruppo": "edilizia_economica_pop",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#37",
+    "articolo": 18,
+    "definizione": "Zona destinata all'edilizia residenziale pubblica %"
+  },
+  "34": {
+    "nome": "Impianti ferroviari",
+    "gruppo": "infra_viabilita",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#86",
+    "articolo": 34,
+    "definizione": "Area per impianti ferroviari"
+  },
+  "35": {
+    "nome": "Zona insediativa periurbana",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#40",
+    "articolo": "19 bis",
+    "definizione": "Zona insediativa periurbana %"
+  },
+  "36": {
+    "nome": "Linea ferroviaria",
+    "gruppo": "infra_viabilita",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 34,
+    "definizione": "Linea ferroviaria"
+  },
+  "37": {
+    "nome": "Zona di perequazione ambientale",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#25",
+    "articolo": 16,
+    "definizione": "Zona di perequazione ambientale %"
+  },
+  "38": {
+    "nome": "Perimetro aree degli accordi di programma",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#88",
+    "articolo": "36 bis",
+    "definizione": "Area compresa nel perimetro di area di accordo di programma"
+  },
+  "39": {
+    "nome": "Perimetro ricognitivo aeroportuale",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": "",
+    "definizione": "Area interessata da vincolo aeroportuale disciplinato dalla L. 4 febbraio 1963 n.58"
+  },
+  "40": {
+    "nome": "Perimetro ambiti di intervento unitario",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#25",
+    "articolo": "",
+    "definizione": ""
+  },
+  "41": {
+    "nome": "Area comunale",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": "",
+    "definizione": "Perimetro del territorio comunale"
+  },
+  "42": {
+    "nome": "Perimetro parco imp.sportivi e attrez.int.gen.",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#74",
+    "articolo": 30,
+    "definizione": "Perimetro del Parco per impianti sportivi e attrezzature di interesse territoriale"
+  },
+  "43": {
+    "nome": "Perimetro peep",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#37",
+    "articolo": "18 bis",
+    "definizione": "Perimetro del piano di zona per l'edilizia economica e popolare"
+  },
+  "44": {
+    "nome": "Perimetri piani urbanistici attuativi",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#88",
+    "articolo": 36,
+    "definizione": "Area inclusa nel perimetro di strumenti urbanistici attuativi e P.I.R.U.E.A. approvati e/o in fase di attuazione"
+  },
+  "45": {
+    "nome": "Perimetro piani di recupero approvati e/o attuati",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 42.2,
+    "definizione": "Area compresa nel perimetro dei piani di recupero approvati e/o attuati all'interno della zona del centro storico"
+  },
+  "46": {
+    "nome": "Perimetro ZIP",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#47",
+    "articolo": 21,
+    "definizione": "Area compresa nel perimetro della Zona Industriale- Commerciale e del Porto Fluviale"
+  },
+  "47": {
+    "nome": "Percorsi di interesse paesaggistico",
+    "gruppo": "infra_viabilita",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 20.4,
+    "definizione": "Percorso di interesse paesaggistico"
+  },
+  "48": {
+    "nome": "Area imp.sport. e attrez.int.gen.",
+    "gruppo": "verde",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#73",
+    "articolo": 30,
+    "definizione": "Area a parco per impianti sportivi e attrezzature di interesse territoriale"
+  },
+  "49": {
+    "nome": "Parcheggi principali",
+    "gruppo": "infra_viabilita",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#71",
+    "articolo": 26,
+    "definizione": "Area per parcheggi principali"
+  },
+  "52": {
+    "nome": "Strumenti urbanistici nel c.s.",
+    "gruppo": "centro_storico",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#93",
+    "articolo": 46,
+    "definizione": "Zona del centro storico soggetta a strumento urbanistico attuativo %"
+  },
+  "54": {
+    "nome": "Zona di perequazione urbana",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#25",
+    "articolo": 16,
+    "definizione": "Zona di perequazione urbana"
+  },
+  "55": {
+    "nome": "Perimetro c.s.",
+    "gruppo": "centro_storico",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#92",
+    "articolo": 41,
+    "definizione": "Perimetro del centro storico"
+  },
+  "56": {
+    "nome": "Perimetro zone di degrado",
+    "gruppo": "centro_storico",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#92",
+    "articolo": 41,
+    "definizione": "Zona di degrado %"
+  },
+  "57": {
+    "nome": "Zona residenziale di completamento 1",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#23",
+    "articolo": 12,
+    "definizione": "Zona residenziale 1 di completamento"
+  },
+  "58": {
+    "nome": "Zona residenziale di completamento 2",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#23",
+    "articolo": 13,
+    "definizione": "Zona residenziale 2 di completamento"
+  },
+  "59": {
+    "nome": "Zona residenziale di completamento 3",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#24",
+    "articolo": 14,
+    "definizione": "Zona residenziale 3 di completamento"
+  },
+  "60": {
+    "nome": "Zona residenziale di completamento 4",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#24",
+    "articolo": 15,
+    "definizione": "Zona residenziale 4 di completamento %"
+  },
+  "61": {
+    "nome": "Zona residenziale di conservazione 5",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#31",
+    "articolo": 17,
+    "definizione": "Zona residenziale 5 di conservazione"
+  },
+  "65": {
+    "nome": "Zona residenziale di espansione 4",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#24",
+    "articolo": 15,
+    "definizione": "Zona residenziale 4 di espansione"
+  },
+  "67": {
+    "nome": "Percorsi ciclabili",
+    "gruppo": "infra_viabilita",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#90",
+    "articolo": 39,
+    "definizione": "Area di riserva per la realizzazione di percorsi integrativi pedonali, ciclabili, veicolari"
+  },
+  "68": {
+    "nome": "Zona residenziale all'interno della zip",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#47",
+    "articolo": 21,
+    "definizione": "Zona residenziale all'interno della zip"
+  },
+  "69": {
+    "nome": "Aree per servizi pubblici di quartiere",
+    "gruppo": "aree_servizi_no_dest",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#80",
+    "articolo": 32,
+    "definizione": "Area per servizi pubblici di quartiere senza destinazione specifica"
+  },
+  "70": {
+    "nome": "Servizi pubblici di quartiere - istruzione",
+    "gruppo": "servizi_quartiere",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#80",
+    "articolo": 32,
+    "definizione": "Area per servizi pubblici di quartiere: istruzione"
+  },
+  "71": {
+    "nome": "Servizi pubblici di quartiere - parcheggi",
+    "gruppo": "servizi_quartiere",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#80",
+    "articolo": 32,
+    "definizione": "Area per servizi pubblici di quartiere: parcheggi"
+  },
+  "72": {
+    "nome": "Servizi pubblici di quartiere - servizi civici",
+    "gruppo": "servizi_quartiere",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#80",
+    "articolo": 32,
+    "definizione": "Area per servizi pubblici di quartiere: servizi civici di interesse comune"
+  },
+  "73": {
+    "nome": "Servizi pubblici di quartiere - servizi religiosi",
+    "gruppo": "servizi_quartiere",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#80",
+    "articolo": 32,
+    "definizione": "Area per servizi pubblici di quartiere: servizi religiosi di interesse comune %"
+  },
+  "74": {
+    "nome": "Servizi pubblici di quartiere - verde pub attrez",
+    "gruppo": "servizi_quartiere",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#80",
+    "articolo": 32,
+    "definizione": "Area per servizi pubblici di quartiere: verde pubblico attrezzato"
+  },
+  "75": {
+    "nome": "Sedi stradali",
+    "gruppo": "infra_viabilita",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#86",
+    "articolo": 35,
+    "definizione": "Sedi stradali"
+  },
+  "76": {
+    "nome": "Tutela dello stato di fatto",
+    "gruppo": "tutele",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#62",
+    "articolo": 23,
+    "definizione": "Zona a destinazione privata soggetta a tutela dello stato di fatto"
+  },
+  "77": {
+    "nome": "Tutele all'interno parco imp.sportivi",
+    "gruppo": "tutele",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#74",
+    "articolo": 30,
+    "definizione": "Zona a destinazione privata soggetta a tutela dello stato di fatto  parco per impianti sportivi e attrezzature di interesse territoriale"
+  },
+  "78": {
+    "nome": "Tutele esterne al centro storico",
+    "gruppo": "tutele",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#64",
+    "articolo": 24,
+    "definizione": "Zona di tutela delle unità insediative di interesse storico, architettonico e ambientale esterne al centro storico"
+  },
+  "79": {
+    "nome": "Verde pubb.attrez.int.generale",
+    "gruppo": "verde",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#73",
+    "articolo": 29,
+    "definizione": "Area per verde pubblico attrezzato di interesse generale"
+  },
+  "80": {
+    "nome": "Verde pubb.interesse generale",
+    "gruppo": "verde",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#72",
+    "articolo": 28,
+    "definizione": "Area per verde pubblico di interesse generale nel territorio esterno al centro storico"
+  },
+  "81": {
+    "nome": "Zona polif.art.comm.di trasformazione",
+    "gruppo": "dir_comm_ind",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#60",
+    "articolo": "22 ter",
+    "definizione": "Zona polifunzionale artigianale commerciale di trasformazione con destinazione specifica a sede stradale e aree di rispetto"
+  },
+  "82": {
+    "nome": "Zona industriale",
+    "gruppo": "dir_comm_ind",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#47",
+    "articolo": 21,
+    "definizione": "Zona industriale"
+  },
+  "83": {
+    "nome": "Zona polif.commerciale artigianale",
+    "gruppo": "dir_comm_ind",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#56",
+    "articolo": "22 bis",
+    "definizione": "Zona polifunzionale commerciale-artigianale %"
+  },
+  "84": {
+    "nome": "Zona polif.commerciale per la rottamazione",
+    "gruppo": "dir_comm_ind",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#56",
+    "articolo": "22 bis",
+    "definizione": "Zona polifunzionale commerciale-artigianale e per le attività di rottamazione"
+  },
+  "85": {
+    "nome": "Zona polif.di trasformazione",
+    "gruppo": "dir_comm_ind",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#52",
+    "articolo": 22,
+    "definizione": "Zona polifunzionale di trasformazione %"
+  },
+  "86": {
+    "nome": "Zona trasformazione integrata",
+    "gruppo": "dir_comm_ind",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#32",
+    "articolo": "17 bis",
+    "definizione": "Zona di trasformazione integrata %"
+  },
+  "87": {
+    "nome": "Area di interesse generale",
+    "gruppo": "aree_servizi_no_dest",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#65",
+    "articolo": 25,
+    "definizione": "Area di interesse generale senza destinazione specifica"
+  },
+  "91": {
+    "nome": "Zona di perequazione integrata",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#25",
+    "articolo": 16,
+    "definizione": "Zona di perequazione integrata %"
+  },
+  "92": {
+    "nome": "Perimetro parchi commerciali",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": "",
+    "definizione": "Area compresa nel perimetro di parco commerciale"
+  },
+  "93": {
+    "nome": "Piani urbanistici attuativi",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#12",
+    "articolo": 3,
+    "definizione": "Area soggetta a disciplina di Piano attuativo approvato"
+  },
+  "94": {
+    "nome": "Zona residenziale di completamento speciale",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf#25",
+    "articolo": "15 bis",
+    "definizione": "Zona residenziale di completamento speciale %"
+  },
+  "95": {
+    "nome": "Zone di degrado esterne al c.s.",
+    "gruppo": "residenza",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": "",
+    "definizione": "Zona di degrado esterna al centro storico"
+  },
+  "110": {
+    "nome": "SUAP",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": "",
+    "definizione": "Area compresa nel perimetro di Variante di cui a provvedimento dello sportello unico per le attività produttive (SUAP) %"
+  },
+  "130": {
+    "nome": "Perimetro ZIP NORD",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": "",
+    "definizione": "Area compresa nel perimetro della zona industriale nord"
+  },
+  "135": {
+    "nome": "Perimetro area intermodale",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 25,
+    "definizione": "Area compresa nel perimetro dell'area intermodale"
+  },
+  "140": {
+    "nome": "Perimetro varianti provvisorie",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": "",
+    "definizione": "Area compresa nel perimetro di Variante provvisoria %"
+  },
+  "150": {
+    "nome": "R.I.R. Area sorgente di rischio",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 0,
+    "definizione": ""
+  },
+  "151": {
+    "nome": "R.I.R. Zona di sicuro impatto",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 0,
+    "definizione": ""
+  },
+  "152": {
+    "nome": "R.I.R. Zona di danno",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 0,
+    "definizione": ""
+  },
+  "153": {
+    "nome": "R.I.R. Zona di attenzione",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 0,
+    "definizione": ""
+  },
+  "200": {
+    "nome": "Perimetro accordi di pianificazione",
+    "gruppo": "perimetri",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 15.3,
+    "definizione": "Area compresa nel perimetro di accordo di pianificazione %"
+  },
+  "201": {
+    "nome": "Perimetro Art. 43 N.T.A.",
+    "gruppo": "centro_storico",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 43,
+    "definizione": "Area compresa nell'ambito di deroga ex art. 43"
+  },
+  "202": {
+    "nome": "Corridoio T.A.V.",
+    "gruppo": "aree_rispetto",
+    "url": "http://www.padovanet.it/allegati/C_1_Allegati_15388_Allegato_0.pdf",
+    "articolo": 33,
+    "definizione": "con sovrapposto CORRIDOIO TAV (Nuova linea AV-AC Verona-Padova)"
+  },
+  "999": {
+    "nome": "Perimetri temp",
+    "gruppo": "perimetri",
+    "url": "",
+    "articolo": "",
+    "definizione": ""
+  }
+}

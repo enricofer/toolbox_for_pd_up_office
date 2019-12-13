@@ -1,0 +1,513 @@
+[
+  {
+    "layer": "b0101011_Vincolo",
+    "campo": "TIPOVINC",
+    "valore": "01",
+    "descrizione": "Vincolo sui beni culturali  (D.Lgs. 42/2004, artt.10 e 12)",
+    "nta": 5.1
+  },
+  {
+    "layer": "b0101021_VincoloPaesaggist",
+    "campo": "TIPOVINC",
+    "valore": "01",
+    "descrizione": "Vincolo paesaggistico - Elementi ed aree di notevole interesse pubblico (art.136 D. Lgs. 42/2004)",
+    "nta": "5.3.1"
+  },
+  {
+    "layer": "b0101021_VincoloPaesaggist",
+    "campo": "TIPOVINC",
+    "valore": "03",
+    "descrizione": "Vincolo paesaggistico - Corsi d'acqua (art.142 lett.c, D.lgs 42/2004) e territori contermini ai laghi (art.142 lett.b, D.lgs 42/2004)",
+    "nta": "5.3.2"
+  },
+  {
+    "layer": "b0101021_VincoloPaesaggist",
+    "campo": "TIPOVINC",
+    "valore": 10,
+    "descrizione": "Vincolo paesaggistico - Zona di interesse archeologico (art.142 lett.m, D.lgs 42/2004 e art.27 N.T.A. del P.T.R.C.)",
+    "nta": "5.3.4"
+  },
+  {
+    "layer": "b0101031_VincDestForestale",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Vincolo di destinazione forestale (art. 15 L.R. 52/78)",
+    "nta": "5.5.3"
+  },
+  {
+    "layer": "b0102011_SIC",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Sito di Importanza Comunitaria (SIC) - Grave e zone umide della Brenta (IT3260018)",
+    "nta": 5.4
+  },
+  {
+    "layer": "b0102021_ZPS",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Zona di Protezione Speciale (ZPS) - Grave e zone umide della Brenta (IT3260018)",
+    "nta": 5.4
+  },
+  {
+    "layer": "b0103011_AmbitiParchiRiser",
+    "campo": "DENOM",
+    "valore": "Medio e basso corso del Brenta",
+    "descrizione": "Ambito naturalistico di livello regionale (P.T.R.C. art.19) - Medio e basso corso del Brenta",
+    "nta": "5.5.3"
+  },
+  {
+    "layer": "b0103011_AmbitiParchiRiser",
+    "campo": "DENOM",
+    "valore": "Ambiti fluviali del Tesina, del Roncajette e del Bacchiglione",
+    "descrizione": "Ambito naturalistico di livello regionale (P.T.R.C. art.19) - Ambiti fluviali del Tesina, del Roncajette e del Bacchiglione",
+    "nta": "5.5.3"
+  },
+  {
+    "layer": "b0103011_AmbitiParchiRiser",
+    "campo": "DENOM",
+    "valore": "Medio corso del Brenta",
+    "descrizione": "Ambiti per l'istituzione di Parchi Regionali (P.T.R.C. art.33) - Medio corso del Brenta",
+    "nta": "5.5.2"
+  },
+  {
+    "layer": "b0103051_PAIRischioIdr",
+    "campo": "PERICOLO",
+    "valore": "_F",
+    "descrizione": "Aree a pericolosità idraulica e idrogeologica identificate dal PAI (L.267/98, L.365/00) – F: Area fluviale",
+    "nta": "5.5.4"
+  },
+  {
+    "layer": "b0103051_PAIRischioIdr",
+    "campo": "PERICOLO",
+    "valore": "P1",
+    "descrizione": "Aree a pericolosità idraulica e idrogeologica identificate dal PAI (L.267/98, L.365/00) – P1: Area a moderata pericolosità",
+    "nta": "5.5.4"
+  },
+  {
+    "layer": "b0103051_PAIRischioIdr",
+    "campo": "PERICOLO",
+    "valore": "P3",
+    "descrizione": "Aree a pericolosità idraulica e idrogeologica identificate dal PAI (L.267/98, L.365/00) – P3: Area ad elevata pericolosità",
+    "nta": "5.5.4"
+  },
+  {
+    "layer": "b0103051_PAIRischioIdr",
+    "campo": "PERICOLO",
+    "valore": "P2",
+    "descrizione": "Aree a pericolosità idraulica e idrogeologica identificate dal PAI (L.267/98, L.365/00) – P2: Area a media pericolosità",
+    "nta": "5.5.4"
+  },
+  {
+    "layer": "b0103081_PTCPA",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Ville Venete - Pertinenze scoperte da tutelare e Contesti figurativi (Tav.P.4. P.T.C.P.)",
+    "nta": "5.5.1.2"
+  },
+  {
+    "layer": "b0104011_CentroStorico",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Centro Storico (P.R.G., P.T.C.P. art.26 A N.T., P.T.R.C. art.24 N.T.)",
+    "nta": "5.5.1"
+  },
+  {
+    "layer": "b0105011_FontiVincolo",
+    "campo": "TIPOELEM",
+    "valore": 12,
+    "descrizione": "Elementi generatori di vincolo – fasce di rispetto e zone di tutela: Impianti di telecomunicazione",
+    "nta": "5.6.6"
+  },
+  {
+    "layer": "b0105011_FontiVincolo",
+    "campo": "TIPOELEM",
+    "valore": "03",
+    "descrizione": "Elementi generatori di vincolo – fasce di rispetto e zone di tutela: Fascia di rispetto Depuratori",
+    "nta": "5.6.2"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": "08",
+    "descrizione": "Fascia di rispetto per Stabilimenti a rischio di incidente rilevante (D.Lgs 334/1999, D.Lgs 328/2005)",
+    "nta": "5.6.11"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": 15,
+    "descrizione": "Elementi generatori di vincolo – fasce di rispetto e zone di tutela: Fascia di rispetto Pozzi di prelievo",
+    "nta": "5.6.5"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": 17,
+    "descrizione": "Idrografia - Fiumi torrenti e Canali (R.D. 25 luglio 1904 n.523) o Corsi d'acqua consorziali (R.D. 8 maggio 1904 n.368)",
+    "nta": "5.6.7.1-2"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": "02",
+    "descrizione": "Fascia di rispetto stradale - Strade di interesse comunale e sovracomunale esistenti",
+    "nta": "5.6.8"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": 11,
+    "descrizione": "Fascia di rispetto ferroviario - Rete Ferroviaria esistente (DPR N.753/1980)",
+    "nta": "5.6.9"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": 13,
+    "descrizione": "Fascia di rispetto per Metanodotti (D.M. 24.11.1984)",
+    "nta": "5.6.10"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": 50,
+    "descrizione": "Fascia di rispetto per Condotta dell'ossigeno gassoso (D.P.R. 24/11/1984)",
+    "nta": "5.6.14"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": 14,
+    "descrizione": "Elementi generatori di vincolo – fasce di rispetto e zone di tutela: Fascia di rispetto Elettrodotti",
+    "nta": "5.6.4"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": "07",
+    "descrizione": "Fascia di rispetto per Allevamenti zootecnici intensivi",
+    "nta": "5.6.15"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": "06",
+    "descrizione": "Servitù o Fasce di rispetto militare (D.lgs 09.05.2005 n.96, D.lgs 15.03.2006 n.151)",
+    "nta": "5.6.13"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": 12,
+    "descrizione": "Servitù o Fasce di rispetto aeroportuale",
+    "nta": "5.6.12"
+  },
+  {
+    "layer": "b0105021_FasceRispetto",
+    "campo": "TIPORISP",
+    "valore": "01",
+    "descrizione": "Elementi generatori di vincolo – fasce di rispetto e zone di tutela: Fascia di rispetto cimiteriale (R.D.27.07.1934 n.1265 e s.m.i.)",
+    "nta": "5.6.3"
+  },
+  {
+    "layer": "b0105051_CentriAbitati",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Centri Abitati",
+    "nta": "5.6.8.1"
+  },
+  {
+    "layer": "b0105052_SIR",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Linea SIR esistente",
+    "nta": "5.6.9"
+  },
+  {
+    "layer": "b0402011_AreeUrbC",
+    "campo": "AREEURBC",
+    "valore": "01",
+    "descrizione": "Aree di urbanizzazione consolidata: Città Consolidata",
+    "nta": "11.2.1"
+  },
+  {
+    "layer": "b0402011_AreeUrbC",
+    "campo": "AREEURBC",
+    "valore": "02",
+    "descrizione": "Ambiti di urbanizzazione consolidata con destinazioni prevalentemente produttive commerciali direzionali: Città consolidata",
+    "nta": "11.2.1-3 12"
+  },
+  {
+    "layer": "b0402021_AreeUrbD",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Edificazione diffusa",
+    "nta": "11.2.6"
+  },
+  {
+    "layer": "b0402031_MigliorRiqualRior",
+    "campo": "TIPOINT",
+    "valore": "02",
+    "descrizione": "Aree idonee per interventi diretti al miglioramento della qualità urbana e territoriale nella città consolidata:Città da riqualificare e/o convertire",
+    "nta": "11.2.3"
+  },
+  {
+    "layer": "b0402091_InfrastruttureRil",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Corridoio Plurimodale",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Stazione SFMR",
+    "descrizione": "Stazione SFMR",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Tram Train",
+    "descrizione": "Tram Train",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Linee S.I.R. di progetto",
+    "descrizione": "Linee S.I.R. di progetto",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Previsioni nuova viabilita'",
+    "descrizione": "Viabilità primaria di scala territoriale di progetto",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Corridoio per le infrastrutture viarie",
+    "descrizione": "Viabilità primaria di scala territoriale da potenziare",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Linee ferroviarie di progetto",
+    "descrizione": "Linee ferroviarie di progetto",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Viabilità secondaria di progetto",
+    "descrizione": "Viabilità secondaria di progetto",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Percorsi storico-ambientali di interesse sovracomunale esistenti",
+    "descrizione": "Percorsi storico-ambientali di interesse sovracomunale esistenti",
+    "nta": 15
+  },
+  {
+    "layer": "b0402092_InfrastruttureRil",
+    "campo": "DENOM",
+    "valore": "Percorsi storico-ambientali di interesse sovracomunale di progetto",
+    "descrizione": "Percorsi storico-ambientali di interesse sovracomunale di progetto",
+    "nta": 15
+  },
+  {
+    "layer": "b0402111_ParchiCommerciali",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Parchi commerciali",
+    "nta": "12.2.4"
+  },
+  {
+    "layer": "b0402246_PianoAttuativo",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Ambiti di Piano Attuativo del P.R.G. vigente confermati dal P.A.T.- Città Programmata",
+    "nta": "11.2.2-12.1"
+  },
+  {
+    "layer": "b0403011_TutelaRiqualValor",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Aree di riqualificazione e riconversione nella città consolidata: Città da riqualificare e/o convertire",
+    "nta": "11.2.3"
+  },
+  {
+    "layer": "b0403021_VilleVenete",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Ville individuate nella pubblicazione dell'Istituto delle Ville Venete",
+    "nta": "17.1.1"
+  },
+  {
+    "layer": "b0403031_EdificioVincolato",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Edifici e complessi di valore monumentale testimoniale",
+    "nta": "17.1.1"
+  },
+  {
+    "layer": "b0403041_PertinenzaTutelat",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Pertinenze scoperte da tutelare",
+    "nta": "17.1.1"
+  },
+  {
+    "layer": "b0403051_ContComplMonument",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Contesti figurativi dei complessi monumentali",
+    "nta": "17.1.2"
+  },
+  {
+    "layer": "b0403063_ConiVisuali",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Coni Visuali",
+    "nta": "17.1.4"
+  },
+  {
+    "layer": "b0404011_ParchiRiserIntCom",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: Ambiti dei parchi o per l'istituzione di parchi e riserve naturali di interesse comunale",
+    "nta": "11.2.2"
+  },
+  {
+    "layer": "b0404011_ParchiRiserIntCom",
+    "campo": "",
+    "valore": "",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Ambiti dei parchi o per l'istituzione dei parchi e riserve naturali di interesse comunale",
+    "nta": "11.2.2"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "connessione naturalistica di 1 grado",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Ambiti di connessione naturalistica di 1 grado",
+    "nta": "17.2.2-17.2.3"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "connessione naturalistica di 2 grado",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Ambiti di connessione naturalistica di 2 grado",
+    "nta": "17.2.2-17.2.3"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "core areas",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Aree nucleo (Core areas)",
+    "nta": "17.2.2-17.2.3"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "corridoio ecologico principale",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Corridoio ecologico principale (Blueways)",
+    "nta": "17.2.2-17.2.3"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "corridoio ecologico secondario",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Corridoio ecologico secondario (Blueways)",
+    "nta": "17.2.2-17.2.3"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "core areas",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: Area nucleo (core areas)",
+    "nta": "17.2.2a"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "stepping stone",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: Stepping Stone",
+    "nta": "17.2.2e"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "connessione naturalistica di 1 grado",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: Ambiti di connessione naturalistica di 1 grado",
+    "nta": "17.2.2b"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "connessione naturalistica di 2 grado",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: Ambiti di connessione naturalistica di 2 grado",
+    "nta": "17.2.2b"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "corridoio ecologico principale",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: corridoio ecologico principale",
+    "nta": "17.2.2c"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "corridoio ecologico secondario",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: corridoio ecologico secondario",
+    "nta": "17.2.2d"
+  },
+  {
+    "layer": "b0404021_ValoriTuteleNatur",
+    "campo": "NOTA",
+    "valore": "stepping stone",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Stepping stone",
+    "nta": "17.2.2-17.2.3"
+  },
+  {
+    "layer": "b0404022_ValoriTuteleNatuL",
+    "campo": "TIPOTUT",
+    "valore": "02",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Corridoio ecologico secondario (Greenways)",
+    "nta": "17.2.3"
+  },
+  {
+    "layer": "b0404022_ValoriTuteleNatuL",
+    "campo": "TIPOTUT",
+    "valore": "01",
+    "descrizione": "Valori e tutele naturali - Rete ecologica - Corridoio ecologico principale (Greenways)",
+    "nta": "17.2.3"
+  },
+  {
+    "layer": "b0404041_PariRisIntSovrCom",
+    "campo": "DENOM",
+    "valore": "Area urbana termale",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: Ambiti di pianificazione coordinata, Area urbana termale",
+    "nta": 18.2
+  },
+  {
+    "layer": "b0404041_PariRisIntSovrCom",
+    "campo": "DENOM",
+    "valore": "P1 - Fiume Bacchiglione - P3 - Fiumicello Tergola - P4 - Canale di Roncajette - P5 - Naviglio Brentella - P8 - Canale S. Gregorio - P9 - Canale Scaricatore - P10 - Canale Piovego",
+    "descrizione": "Ambiti dei parchi o per l'istituzione di parchi e riserve naturali di interesse sovracomunale.",
+    "nta": "17.2.1a"
+  },
+  {
+    "layer": "b0404041_PariRisIntSovrCom",
+    "campo": "DENOM",
+    "valore": "Area periurbana di Padova",
+    "descrizione": "Valori e tutele naturali - Rete ecologica: Ambiti di pianificazione coordinata, Area periurbana di Padova",
+    "nta": 18.1
+  }
+]
