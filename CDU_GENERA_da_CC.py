@@ -4,33 +4,18 @@
 # Import arcpy module
 import arcpy
 import json as json_module
-import tempfile
 import os
 
 from secretary import Renderer
 
-def decodificaCatasto(coordinate_catastali):
-    FMs = coordinate_catastali.split(' ',)
-    out = ''
-    for FM in FMs:
-        decodeFM = FM.split('/')
-        if decodeFM[0] != FM:
-            if len(decodeFM[1].split('-')) == 1:
-                mappaleDesc = 'MAPPALE'
-            else:
-                mappaleDesc = 'MAPPALI'
-            out += ' FOGLIO '+ decodeFM[0]
-            out += ' %s %s'% (mappaleDesc,decodeFM[1])
-    return out
+# Load required toolboxes
 
 # Local variables:
-contesto = arcpy.GetParameterAsText(0)
-coordinate_catastali = arcpy.GetParameterAsText(1)
-protocollo_numero = arcpy.GetParameterAsText(2)
-protocollo_data = arcpy.GetParameterAsText(3)
-richiedente = arcpy.GetParameterAsText(4)
-odt_target = arcpy.GetParameterAsText(5)
-
+coordinate_catastali = arcpy.GetParameterAsText(0)
+protocollo_numero = arcpy.GetParameterAsText(1)
+protocollo_data = arcpy.GetParameterAsText(2)
+richiedente = arcpy.GetParameterAsText(3)
+odt_target = arcpy.GetParameterAsText(4)
 
 #json = ""
 poligono = ""
@@ -66,7 +51,6 @@ arcpy.ImportToolbox("C:/Users/ferregutie/AppData/Roaming/ESRI/Desktop10.6/ArcToo
 arcpy.gp.toolbox = "C:/Users/ferregutie/AppData/Roaming/ESRI/Desktop10.6/ArcToolbox/My Toolboxes/URBAN.tbx"
 
 if test:
-    identificazione = "TEST"
     PI_def = json_module.loads(PI_test)
     CS_def = json_module.loads(CS_test)
     PAT_def = json_module.loads(PAT_test)
@@ -74,37 +58,20 @@ if test:
     for item in PAT_def:
         arcpy.AddMessage(item['desc'])
 else:
-    poligono = contesto
-    identificazione = ""
+    CC_result = arcpy.gp.coordinateCatastaliToLayer(coordinate_catastali)
+    arcpy.AddMessage("CC_result: %s" % CC_result.getOutput(0))
 
-    if coordinate_catastali:
-        CC_result = arcpy.gp.coordinateCatastaliToLayer(coordinate_catastali)
-        arcpy.AddMessage("CC_result: %s" % CC_result.getOutput(0))
-        poligono = CC_result.getOutput(0)
-        identificazione = u"così individuata nel Catasto Terreni: %s" % decodificaCatasto(coordinate_catastali)
-    else:
-        if not contesto:
-            arcpy.AddError("Deve essere specificata almeno un contesto, come layer o come coordinate catastali")
-            exit(0)
-        poligono = contesto
+    poligono = CC_result.getOutput(0)
 
     # Process: CDU_PI
     PI_result = arcpy.gp.CDUPI(poligono, output_json)
     arcpy.AddMessage("PI_result: %s" % PI_result.getOutput(1))
     PI_def = json_module.loads(PI_result.getOutput(1))
 
-    checkInCS = False
-    for defin in PI_def:
-        if defin["layer"] == 55:
-            checkInCS = True
-
-    if checkInCS:
-        # Process: CDU_CS
-        CS_result = arcpy.gp.CDUCS(poligono, output_json)
-        arcpy.AddMessage("CS_result: %s" % CS_result.getOutput(1))
-        CS_def = json_module.loads(CS_result.getOutput(1))
-    else:
-        CS_def = []
+    # Process: CDU_CS
+    CS_result = arcpy.gp.CDUCS(poligono, output_json)
+    arcpy.AddMessage("CS_result: %s" % CS_result.getOutput(1))
+    CS_def = json_module.loads(CS_result.getOutput(1))
 
     # Process: CDU_PAT
     PAT_result = arcpy.gp.CDUPAT(poligono, output_json__2_)
@@ -130,7 +97,7 @@ PI_nta = PI_nta[:-2] + "; "
 CS_udp = ''
 dest_selection = []
 for item in CS_def:
-    if not item["norma1"]+item["despro1"] in dest_selection:
+    if item["norma1"]+item["despro1"] in dest_selection:
         dest_selection.append(item["norma1"]+item["despro1"])
         CS_udp += '%s con destinazione %s, ' % (item['norma1'], item["despro1"])
 CS_udp = CS_udp[:-2] + "; "
@@ -139,8 +106,7 @@ PAT_desc = ''
 PAT_nta = ''
 dest_selection = []
 for item in PAT_def:
-    arcpy.AddMessage("dest_selection: %s" % str(dest_selection))
-    if not item["desc"] in dest_selection:
+    if item["desc"] in dest_selection:
         dest_selection.append(item["desc"])
         PAT_desc += '%s, ' % item["desc"].upper()
         PAT_nta += '%s, ' % str(item["nta"]).upper()
@@ -167,26 +133,9 @@ params = {
 arcpy.AddMessage("PARAMS: %s" % str(params))
 
 engine = Renderer()
-template2 = os.path.join(os.path.dirname(__file__),"SOMMARIO_template.odt")
-result2 = engine.render(template2, PI_def=PI_def, CS_def=CS_def, PAT_def=PAT_def)
-sommario_target = os.path.join(tempfile.mkdtemp(),"sommario.odt")
-
-with open(sommario_target,'wb') as output:
-    output.write(result2)
-    output.flush()
-
-arcpy.AddMessage("SOMMARIO DESTINAZIONI: %s" % sommario_target)
-
-if not odt_target:
-    odt_target = os.path.join(tempfile.mkdtemp(),"CDU.odt")
-
-template1 = os.path.join(os.path.dirname(__file__),"CDU_template.odt")
-result1 = engine.render(template1, **params)
+template = os.path.join(os.path.dirname(__file__),"CDU_template.odt")
+result = engine.render(template, **params)
 
 with open(odt_target,'wb') as output:
-    output.write(result1)
+    output.write(result)
     output.flush()
-
-arcpy.AddMessage("SOMMARIO DESTINAZIONI: %s" % odt_target)
-
-

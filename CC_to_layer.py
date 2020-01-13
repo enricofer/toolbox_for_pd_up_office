@@ -37,8 +37,11 @@ particelle_output = arcpy.GetParameterAsText(1)
 
 arcpy.AddMessage("WHERE: %s" % str(cc_input))
 
-input_lyr_name = os.path.join(arcpy.env.scratchWorkspace, "filter_" + uuid.uuid4().hex)
-output_lyr_name = os.path.join(arcpy.env.scratchWorkspace, "catasto_" + uuid.uuid4().hex)
+default_env = arcpy.env.workspace
+scratch_env = arcpy.env.scratchWorkspace
+
+input_lyr_name = os.path.join(scratch_env, "filter_" + uuid.uuid4().hex)
+output_lyr_name = os.path.join(default_env, "catasto_" + uuid.uuid4().hex)
 
 particelle_cc_layer = r"Connessioni database\VISIO_R_GDBT.sde\SIT.CATASTO\SIT.particelle_cat"
 
@@ -79,5 +82,5 @@ with open(esrijson_filepath,'w') as f:
 arcpy.AddMessage(esrijson_filepath)
 #arcpy.FeaturesToJSON_conversion(output_lyr_name,esrijson_filepath,"FORMATTED")
 
-arcpy.SetParameter(1, out)
+arcpy.SetParameter(1, output_lyr_name)
 arcpy.SetParameter(2, esrijson_filepath)

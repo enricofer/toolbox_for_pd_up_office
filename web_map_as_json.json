@@ -1,0 +1,134 @@
+{
+    "mapOptions": {
+        "showAttribution": false,
+        "extent": {
+            "xmin": {{ printpar.extent.0 }},
+            "ymin": {{ printpar.extent.1 }},
+            "xmax": {{ printpar.extent.2 }},
+            "ymax": {{ printpar.extent.3 }},
+            "spatialReference": {
+                "wkid": {{ printpar.srid }}
+            }
+        },
+        "spatialReference": {
+            "wkid": {{ printpar.srid }}
+        },
+        "scale": {{ printpar.scale }}
+    },
+    "operationalLayers": [{
+        "id": "drawGraphics_poly",
+        "opacity": 1,
+        "minScale": 0,
+        "maxScale": 0,
+        "featureCollection": {
+            "layers": [{
+                "layerDefinition": {
+                    "name": "drawGraphics_poly",
+                    "geometryType": "esriGeometryPolygon",
+                    "drawingInfo": {
+                        "renderer": {
+                            "type": "uniqueValue",
+                            "field1": "ren",
+                            "field2": "null",
+                            "field3": "null",
+                            "fieldDelimiter": ", ",
+                            "defaultSymbol": {
+                                "color": [0, 0, 0, 64],
+                                "outline": {
+                                    "color": [0, 0, 0, 255],
+                                    "width": 1,
+                                    "type": "esriSLS",
+                                    "style": "esriSLSSolid"
+                                },
+                                "type": "esriSFS",
+                                "style": "esriSFSSolid"
+                            },
+                            "uniqueValueInfos": [{
+                                "value": "1",
+                                "symbol": {
+                                    "color": [0, 0, 0, 0],
+                                    "outline": {
+                                        "color": [255, 0, 0, 255],
+                                        "width": 2,
+                                        "type": "esriSLS",
+                                        "style": "esriSLSSolid"
+                                    },
+                                    "type": "esriSFS",
+                                    "style": "esriSFSForwardDiagonal"
+                                },
+                                "label": "User drawn polygons",
+                                "description": "User drawn polygons"
+                            }]
+                        }
+                    },
+                    "fields": [{
+                        "name": "OBJECTID",
+                        "type": "esriFieldTypeOID",
+                        "alias": "OBJECTID",
+                        "editable": false,
+                        "nullable": false
+                    }, {
+                        "name": "ren",
+                        "type": "esriFieldTypeInteger",
+                        "alias": "ren",
+                        "editable": true,
+                        "nullable": false
+                    }]
+                },
+                "featureSet": {
+                    "geometryType": "esriGeometryPolygon",
+                    "features": []
+                }
+            }]
+        }
+    }, {
+        "id": "printGraphics",
+        "opacity": 0,
+        "minScale": 0,
+        "maxScale": 0,
+        "featureCollection": {
+            "layers": [{
+                "layerDefinition": {
+                    "name": "polygonLayer",
+                    "geometryType": "esriGeometryPolygon"
+                },
+                "featureSet": {
+                    "geometryType": "esriGeometryPolygon",
+                    "features": [{
+                        "geometry": {
+                            "rings": [{{ printpar.esri_bound }}, {{ printpar.esri_frame }}],
+                            "spatialReference": {
+                                "wkid": {{ printpar.srid }}
+                            }
+                        },
+                        "symbol": {
+                            "color": [255, 255, 255, 0],
+                            "outline": {
+                                "color": [255, 0, 0, 255],
+                                "width": 2,
+                                "type": "esriSLS",
+                                "style": "esriSLSSolid"
+                            },
+                            "type": "esriSFS",
+                            "style": "esriSFSSolid"
+                        }
+                    }]
+                }
+            }]
+        }
+    }],
+    "exportOptions": {
+        "outputSize": [649.6062992125984, 501.9685039370079],
+        "dpi": {{ printpar.dpi }}
+    },
+    "layoutOptions": {
+        "titleText": "{{ printpar.title }}",
+        "authorText": "{{ printpar.auth }}",
+        "copyrightText": "{{ printpar.copyright }}",
+        "scaleBarOptions": {
+            "metricUnit": "esriMeters",
+            "metricLabel": "m"
+        },
+        "legendOptions": {}
+    }
+}

@@ -9,7 +9,7 @@ import json
 current_workspace = arcpy.env.scratchWorkspace
 
 arcpy.AddMessage(arcpy.GetParameterAsText(0))
-probe_path = arcpy.GetParameterAsText(0).split('\\')
+probe_path = arcpy.GetParameterAsText(0)#.split('\\')
 tolleranza = float(arcpy.GetParameterAsText(1))
 arcpy.AddMessage("probe_path: %s" % probe_path)
 
@@ -54,7 +54,7 @@ for check_layer in check_layer_list:
 
 arcpy.AddMessage(json.dumps(output,indent=3))
 
-arcpy.SetParameterAsText(3,json.dumps(output,indent=3))
+arcpy.SetParameterAsText(3,json.dumps(output))
 
 arcpy.AddMessage(arcpy.GetParameterAsText(2))
 if arcpy.GetParameterAsText(2):

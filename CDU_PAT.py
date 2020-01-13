@@ -21,7 +21,7 @@ arcpy.AddMessage("default.gdb_path: %s" % arcpy.env.scratchWorkspace)
 
 default_workspace = arcpy.env.scratchWorkspace
 arcpy.AddMessage(arcpy.GetParameterAsText(0))
-probe_path = arcpy.GetParameterAsText(0).split('\\')
+probe_path = arcpy.GetParameterAsText(0)
 arcpy.AddMessage("probe_path: %s" % probe_path)
 
 with open(os.path.join(os.path.dirname(__file__),"sit_decodifica_pat.json"), 'r') as f:
@@ -87,7 +87,7 @@ for check_layer in check_layer_list:
 
 arcpy.AddMessage(json.dumps(output,indent=3))
 
-arcpy.SetParameterAsText(2,json.dumps(output,indent=3))
+arcpy.SetParameterAsText(2,json.dumps(output))
 
 arcpy.AddMessage(arcpy.GetParameterAsText(1))
 if arcpy.GetParameterAsText(1):

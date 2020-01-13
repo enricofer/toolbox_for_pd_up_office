@@ -1,0 +1,10 @@
+*.pyc
+*.xml
+Makefile
+*.log
+help/
+i18n/
+.vscode/
+.vscode/*
+.DS_Store
+*~
