@@ -1,15 +1,34 @@
+
+# -*- coding: utf-8 -*-
+
+#---------------------------------------------------------------------
+# Name:        Script per la generazione di CDU - Comune di Padova
+#
+# Author:      Enrico Ferreguti
+#
+# Copyright:   (c) Comune di Padova 2020
+#---------------------------------------------------------------------
+
+__version__ = "0.9"
+__author__  = "Enrico Ferreguti"
+__email__ = "ferregutie@comune.padova.it"
+__license__ = "GPLv3"
+__copyright__ = "Copyright 2020, Comune di Padova"
+
 import arcpy
 import os
 import uuid
 import tempfile
 import json
 
-from SUPPORT import decodifica_pi, decodifica_pat
+from SUPPORT import decodifica_pi, decodifica_pat, get_jobfile
 
-class ZTO_2006_Tool(object):
+from SUPPORT import current_workspace, memory_workspace, scratch_workspace, activity_workspace, output_workspace, get_jobfile
+
+class ZTO2006Tool(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
-        self.label = "ZTO_2006"
+        self.label = "ZTO2006"
         self.description = "da scrivere"
         self.canRunInBackground = False
 
@@ -56,10 +75,7 @@ class ZTO_2006_Tool(object):
         """The source code of the tool."""
         arcpy.AddMessage("default.gdb_path: %s" % arcpy.env.workspace)
 
-        current_workspace = arcpy.env.scratchWorkspace
-
         probe_path = parameters[0].valueAsText
-        output_json = parameters[1].valueAsText
 
         arcpy.AddMessage("probe_path: %s" % probe_path)
 
@@ -87,11 +103,13 @@ class ZTO_2006_Tool(object):
             if desc.shapeType == 'Polygon':
                 intersect_layer = check_layer
             else:
-                intersect_layer = os.path.join(current_workspace,"buffer_%s" % uuid.uuid4().hex)
+                #intersect_layer = os.path.join(current_workspace,"buffer_%s" % uuid.uuid4().hex)
+                intersect_layer = get_jobfile("memory")
                 arcpy.Buffer_analysis(check_layer, intersect_layer, "0.1")
 
             inFeatures = [probe_path, check_layer]
-            intersectOutput = os.path.join(current_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+            #intersectOutput = os.path.join(current_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+            intersectOutput = get_jobfile("memory")
             clusterTolerance = 0    
             arcpy.Intersect_analysis(inFeatures, intersectOutput, "", clusterTolerance, "input")
             
@@ -111,10 +129,10 @@ class ZTO_2006_Tool(object):
         parameters[1].value = json.dumps(zone)
 
 
-class ZTO_SC_VOL_Tool(object):
+class ZTOSCVOLTool(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
-        self.label = "ZTO_SC_VOL"
+        self.label = "ZTOSCVOL"
         self.description = "da scrivere"
         self.canRunInBackground = False
 
@@ -161,10 +179,7 @@ class ZTO_SC_VOL_Tool(object):
         """The source code of the tool."""
         arcpy.AddMessage("default.gdb_path: %s" % arcpy.env.workspace)
 
-        current_workspace = arcpy.env.scratchWorkspace
-
         probe_path = parameters[0].valueAsText
-        output_json = parameters[1].valueAsText
 
         arcpy.AddMessage("probe_path: %s" % probe_path)
 
@@ -209,7 +224,8 @@ class ZTO_SC_VOL_Tool(object):
             for row in scur:
                 probe_list.append(row[0])
         arcpy.AddMessage("PROBELIST: %s" % str(probe_list))
-        probe_list_lyr = arcpy.CopyFeatures_management(probe_list, r"in_memory\zo")
+        selection = get_jobfile("memory")
+        probe_list_lyr = arcpy.CopyFeatures_management(probe_list, selection)
 
         for check_layer in check_layer_list:
             arcpy.AddMessage("check_layer: %s" % check_layer)
@@ -218,11 +234,13 @@ class ZTO_SC_VOL_Tool(object):
             if desc.shapeType == 'Polygon':
                 intersect_layer = check_layer
             else:
-                intersect_layer = os.path.join(current_workspace,"buffer_%s" % uuid.uuid4().hex)
+                #intersect_layer = os.path.join(current_workspace,"buffer_%s" % uuid.uuid4().hex)
+                intersect_layer = get_jobfile("memory")
                 arcpy.Buffer_analysis(check_layer, intersect_layer, "0.1")
 
             inFeatures = [probe_list_lyr, check_layer]
-            intersectOutput = os.path.join(current_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+            #intersectOutput = os.path.join(current_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+            intersectOutput = get_jobfile("memory")
             clusterTolerance = 0    
             arcpy.Intersect_analysis(inFeatures, intersectOutput, "", clusterTolerance, "input")
             

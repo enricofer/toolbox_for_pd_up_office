@@ -1,0 +1,3 @@
+secretary
+jinja2
+PyPDF2

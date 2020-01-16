@@ -1,5 +1,21 @@
 
 # -*- coding: utf-8 -*-
+
+#---------------------------------------------------------------------
+# Name:        Script per la generazione di CDU - Comune di Padova
+#
+# Author:      Enrico Ferreguti
+#
+# Copyright:   (c) Comune di Padova 2020
+#---------------------------------------------------------------------
+
+__version__ = "0.9"
+__author__  = "Enrico Ferreguti"
+__email__ = "ferregutie@comune.padova.it"
+__license__ = "GPLv3"
+__copyright__ = "Copyright 2020, Comune di Padova"
+
+
 # Import system modules
 import arcpy
 import os
@@ -9,12 +25,14 @@ import json
 
 from sets import Set
 
-from SUPPORT import decodifica_pi, decodifica_pat, calc_area_totale
+from SUPPORT import decodifica_pi, decodifica_pat, calc_area_totale, get_jobfile
 
-class CDU_PI_tool(object):
+from SUPPORT import current_workspace, memory_workspace, scratch_workspace, activity_workspace, output_workspace, get_jobfile
+
+class CDUPItool(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
-        self.label = "CDU_PI"
+        self.label = "CDU-PI"
         self.description = "da scrivere"
         self.canRunInBackground = False
 
@@ -31,13 +49,6 @@ class CDU_PI_tool(object):
             parameterType="Required",
             direction="Input")
 
-        out_json = arcpy.Parameter(
-            displayName="Risultato",
-            name="out_json",
-            datatype="DEFile",
-            parameterType="Optional",
-            direction="Output")
-
         out_txt = arcpy.Parameter(
             displayName="Risultato",
             name="out_txt",
@@ -52,7 +63,14 @@ class CDU_PI_tool(object):
             parameterType="Derived",
             direction="Output")
 
-        params = [in_features, out_json, out_txt, out_zone]
+        out_json = arcpy.Parameter(
+            displayName="Risultato",
+            name="out_json",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        params = [in_features, out_txt, out_zone]
 
         return params
 
@@ -74,9 +92,7 @@ class CDU_PI_tool(object):
     def execute(self, parameters, messages):
         """The source code of the tool."""
         arcpy.AddMessage("default.gdb_path: %s" % arcpy.env.workspace)
-        #default_workspace = arcpy.env.scratchWorkspace
-        default_workspace = "in_memory"
-        current_workspace = arcpy.env.scratchWorkspace
+
 
         arcpy.ImportToolbox(os.path.join(os.path.dirname(__file__), "URB.pyt"))
         arcpy.gp.toolbox = os.path.join(os.path.dirname(__file__), "URB.pyt")
@@ -124,15 +140,20 @@ class CDU_PI_tool(object):
             if desc.shapeType == 'Polygon':
                 intersect_layer = check_layer
             else:
-                intersect_layer = os.path.join(current_workspace,"buffer_%s" % uuid.uuid4().hex)
+                intersect_layer = os.path.join(scratch_workspace,"buffer_%s" % uuid.uuid4().hex)
                 arcpy.Buffer_analysis(check_layer, intersect_layer, "0.1")
             inFeatures = [probe_path, check_layer]
-            intersectOutput = os.path.join(current_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+            #intersectOutput = os.path.join(scratch_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+            intersectOutput = get_jobfile("memory")
             clusterTolerance = 0    
             arcpy.Intersect_analysis(inFeatures, intersectOutput, "", clusterTolerance, "input")
+            
+            check = arcpy.Describe(intersectOutput)
+            field_names = [f.name for f in arcpy.ListFields(intersectOutput)]
+            arcpy.AddMessage("field_check: %s" % str(field_names))
 
             #zone check
-            with arcpy.da.SearchCursor(intersectOutput, ["LAYER", "NOTE", "INTERNO_PER", "SHAPE@area", "OBJECTID"]) as cursor:  
+            with arcpy.da.SearchCursor(intersectOutput, ["LAYER", "NOTE", "INTERNO_PER", "SHAPE@area", "OID"]) as cursor:  
                 for row in cursor: 
                     if decodifica_pi[str(row[0])]["z_omogenea"]:
                         zone_check.add(row[0])
@@ -142,7 +163,7 @@ class CDU_PI_tool(object):
             else:
                 parte = False
             
-            with arcpy.da.SearchCursor(intersectOutput, ["LAYER", "NOTE", "INTERNO_PER", "SHAPE@area", "OBJECTID"]) as cursor:  
+            with arcpy.da.SearchCursor(intersectOutput, ["LAYER", "NOTE", "INTERNO_PER", "SHAPE@area", "OID"]) as cursor:  
                 arcpy.AddMessage("cursor: %s" % cursor)
                 for row in cursor: 
                     
@@ -175,11 +196,11 @@ class CDU_PI_tool(object):
 
                     if row_desc["z_omogenea"] in ["b","c"]:
                         check_layer_lyr = arcpy.mapping.Layer(check_layer)
-                        arcpy.SelectLayerByAttribute_management(check_layer_lyr, "NEW_SELECTION", ' "OBJECTID" = %d ' % row[4] )
-                        arcpy.AddMessage(dir(arcpy.gp.toolbox))
+                        arcpy.SelectLayerByAttribute_management(check_layer_lyr, "NEW_SELECTION", ' "OBJECTID" = %d ' % row[4] ) #OBJECTID
+                        #arcpy.AddMessage(dir(arcpy.gp.toolbox))
                         with arcpy.da.SearchCursor(check_layer_lyr, ["SHAPE@", ]) as cursor_zo:
                             for row_zo in cursor_zo:
-                                res = arcpy.gp.ZTO_SC_VOL_Tool([row_zo[0]])
+                                res = arcpy.gp.ZTOSCVOLTool([row_zo[0]])
                         del cursor_zo
 
                         arcpy.AddMessage(res.getOutput(0))
@@ -197,7 +218,6 @@ class CDU_PI_tool(object):
 
                     output.append(row_desc)
                         
-                    
             del cursor  
 
         if int(area_totale) != int(area_zonizzata):
@@ -216,26 +236,26 @@ class CDU_PI_tool(object):
             )
 
         arcpy.AddMessage(json.dumps(output,indent=3))
-        parameters[2].value = json.dumps(output)
+        parameters[1].value = json.dumps(output)
 
-        zone2006 = arcpy.gp.ZTO_2006_Tool(probe_path)
+        zone2006 = arcpy.gp.ZTO2006Tool(probe_path)
         zone = {
             "vigente": zone_scan,
             "2006": json.loads(zone2006.getOutput(0))
         }
 
         arcpy.AddMessage(json.dumps(zone,indent=3))
-        parameters[3].value = json.dumps(zone)
+        parameters[2].value = json.dumps(zone)
 
-        if parameters[1].valueAsText:
-            with open(parameters[1].valueAsText,"w") as f:
-                f.write(json.dumps(output, indent=3))
+        #if parameters[1].valueAsText:
+        #    with open(parameters[1].valueAsText,"w") as f:
+        #        f.write(json.dumps(output, indent=3))
 
 
-class CDU_PAT_tool(object):
+class CDUPATtool(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
-        self.label = "CDU_PAT"
+        self.label = "CDU-PAT"
         self.description = "da scrivere"
         self.canRunInBackground = False
 
@@ -252,13 +272,6 @@ class CDU_PAT_tool(object):
             parameterType="Required",
             direction="Input")
 
-        out_json = arcpy.Parameter(
-            displayName="Risultato json",
-            name="out_json",
-            datatype="DEFile",
-            parameterType="Optional",
-            direction="Output")
-
         out_txt = arcpy.Parameter(
             displayName="Risultato text",
             name="out_txt",
@@ -266,7 +279,14 @@ class CDU_PAT_tool(object):
             parameterType="Derived",
             direction="Output")
 
-        params = [in_features, out_json, out_txt]
+        out_json = arcpy.Parameter(
+            displayName="Risultato json",
+            name="out_json",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        params = [in_features, out_txt]
 
         return params
 
@@ -301,9 +321,6 @@ class CDU_PAT_tool(object):
 
         arcpy.AddMessage("default.gdb_path: %s" % arcpy.env.workspace)
 
-        current_workspace = arcpy.env.scratchWorkspace
-        default_workspace = "in_memory"
-
         probe_path = parameters[0].valueAsText
 
         cleaned_decodifica = [clean_fc(item["layer"]) for item in decodifica_pat]
@@ -336,7 +353,8 @@ class CDU_PAT_tool(object):
                     if desc.shapeType == 'Polygon':
                         intersect_layer = check_layer
                     else:
-                        intersect_layer = os.path.join(default_workspace,"buffer_%s" % uuid.uuid4().hex)
+                        #intersect_layer = os.path.join(memory_workspace,"buffer_%s" % uuid.uuid4().hex)
+                        intersect_layer = get_jobfile("memory")
                         arcpy.Buffer_analysis(check_layer, intersect_layer, "0.1")
                     
                     target_lyr = arcpy.mapping.Layer(intersect_layer)
@@ -344,7 +362,8 @@ class CDU_PAT_tool(object):
                         target_lyr.definitionQuery = "%s = '%s'" % (related["campo"], related["valore"])
                     
                     inFeatures = [probe_path, target_lyr]
-                    intersectOutput = os.path.join(default_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+                    #intersectOutput = os.path.join(memory_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+                    intersectOutput = get_jobfile("memory")
                     clusterTolerance = 0    
                     arcpy.Intersect_analysis(inFeatures, intersectOutput, "", clusterTolerance, "input")
                     
@@ -361,17 +380,17 @@ class CDU_PAT_tool(object):
 
         arcpy.AddMessage(json.dumps(output,indent=3))
 
-        parameters[2].value = json.dumps(output)
+        parameters[1].value = json.dumps(output)
 
-        if parameters[1].valueAsText:
-            with open(parameters[1].valueAsText, "w") as f:
-                f.write(json.dumps(output, indent=3))
+        #if parameters[1].valueAsText:
+        #    with open(parameters[1].valueAsText, "w") as f:
+        #        f.write(json.dumps(output, indent=3))
 
 
-class CDU_CS_tool(object):
+class CDUCStool(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
-        self.label = "CDU_CS"
+        self.label = "CDU-CS"
         self.description = "da scrivere"
         self.canRunInBackground = False
 
@@ -396,13 +415,6 @@ class CDU_CS_tool(object):
             direction="Input")
         tolleranza.value = 1
 
-        out_json = arcpy.Parameter(
-            displayName="output json",
-            name="out_json",
-            datatype="DEFile",
-            parameterType="Optional",
-            direction="Output")
-
         out_txt = arcpy.Parameter(
             displayName="output txt",
             name="out_txt",
@@ -410,7 +422,14 @@ class CDU_CS_tool(object):
             parameterType="Derived",
             direction="Output")
 
-        params = [in_features, tolleranza, out_json, out_txt]
+        out_json = arcpy.Parameter(
+            displayName="output json",
+            name="out_json",
+            datatype="DEFile",
+            parameterType="Optional",
+            direction="Output")
+
+        params = [in_features, tolleranza, out_txt]
         return params
 
     def isLicensed(self):
@@ -431,9 +450,6 @@ class CDU_CS_tool(object):
     def execute(self, parameters, messages):
         """The source code of the tool."""
 
-        current_workspace = arcpy.env.scratchWorkspace
-        default_workspace = "in_memory"
-
         probe_path = parameters[0].valueAsText
         tolleranza = float(parameters[1].valueAsText)
 
@@ -448,7 +464,8 @@ class CDU_CS_tool(object):
         for check_layer in check_layer_list:
             arcpy.AddMessage("check_layer: %s" % check_layer)
             inFeatures = [probe_path, check_layer]
-            intersectOutput = os.path.join(default_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+            #intersectOutput = os.path.join(memory_workspace,"IntersectOutputResult_%s" % uuid.uuid4().hex)
+            intersectOutput = get_jobfile("memory")
             clusterTolerance = 0    
             arcpy.Intersect_analysis(inFeatures, intersectOutput, "", clusterTolerance, "input")
             
@@ -470,13 +487,13 @@ class CDU_CS_tool(object):
 
         arcpy.AddMessage(json.dumps(output,indent=3))
 
-        parameters[3].value = json.dumps(output)
+        parameters[2].value = json.dumps(output)
 
-        if parameters[2].valueAsText:
-            with open(parameters[2].valueAsText,"w") as f:
-                f.write(json.dumps(output, indent=3))
+        #if parameters[2].valueAsText:
+        #    with open(parameters[2].valueAsText,"w") as f:
+        #        f.write(json.dumps(output, indent=3))
 
-class CC2FC_tool(object):
+class CC2FCtool(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
         self.label = "CC2FC"
@@ -531,10 +548,6 @@ class CC2FC_tool(object):
     def execute(self, parameters, messages):
         """The source code of the tool."""
 
-        current_env = arcpy.env.scratchWorkspace
-        default_env = arcpy.env.workspace
-        scratch_env = "in_memory"
-
         def coordinateCatastaliToWHERE(coordinateCatastali):
             sqlWhere = ""
             fogliMappali = coordinateCatastali.split(" ")
@@ -562,8 +575,10 @@ class CC2FC_tool(object):
 
         arcpy.AddMessage("WHERE: %s" % str(cc_input))
 
-        input_lyr_name = os.path.join(scratch_env, "filter_" + uuid.uuid4().hex)
-        output_lyr_name = os.path.join(default_env, "catasto_" + uuid.uuid4().hex)
+        #input_lyr_name = os.path.join(memory_workspace, "filter_" + uuid.uuid4().hex)
+        #output_lyr_name = os.path.join(scratch_workspace, "catasto_" + uuid.uuid4().hex)
+        input_lyr_name = get_jobfile("memory")
+        output_lyr_name = get_jobfile("memory")
 
         particelle_cc_layer = r"Connessioni database\VISIO_R_GDBT.sde\SIT.CATASTO\SIT.particelle_cat"
 
@@ -590,10 +605,12 @@ class CC2FC_tool(object):
 
         out = arcpy.CopyFeatures_management([particella_union], output_lyr_name)
 
-        out_lyr = arcpy.mapping.Layer(output_lyr_name)
-        out_lyr.name = "ricerca catastale %s" % arcpy.GetParameterAsText(0)
+        #out_lyr = arcpy.mapping.Layer(output_lyr_name)
+        #out_lyr.name = "ricerca catastale %s" % arcpy.GetParameterAsText(0)
 
-        esrijson_filepath = os.path.join(tempfile.mkdtemp(),'catasto.json')
+        #esrijson_filepath = os.path.join(tempfile.mkdtemp(),'catasto.json')
+        esrijson_filepath = get_jobfile("output","json")
+
         with open(esrijson_filepath,'w') as f:
             f.write(particella_union.JSON)
             

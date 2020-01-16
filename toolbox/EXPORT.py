@@ -1,6 +1,20 @@
 
 # -*- coding: utf-8 -*-
 
+#---------------------------------------------------------------------
+# Name:        Script per la generazione di CDU - Comune di Padova
+#
+# Author:      Enrico Ferreguti
+#
+# Copyright:   (c) Comune di Padova 2020
+#---------------------------------------------------------------------
+
+__version__ = "0.9"
+__author__  = "Enrico Ferreguti"
+__email__ = "ferregutie@comune.padova.it"
+__license__ = "GPLv3"
+__copyright__ = "Copyright 2020, Comune di Padova"
+
 
 # Import system modules
 import arcpy
@@ -16,6 +30,7 @@ import tempfile
 import json
 import uuid
 
+from SUPPORT import current_workspace, memory_workspace, scratch_workspace, activity_workspace, output_workspace, get_jobfile
 
 from secretary import Renderer
 
@@ -290,10 +305,10 @@ def decodificaCatasto(coordinate_catastali):
     return out
 
 
-class CDU_GENERA_tool(object):
+class CDUGENERAtool(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
-        self.label = "CDU_GENERA"
+        self.label = "CDUGENERA"
         self.description = "da scrivere"
         self.canRunInBackground = False
 
@@ -367,9 +382,6 @@ class CDU_GENERA_tool(object):
     def execute(self, parameters, messages):
         """The source code of the tool."""
 
-        default_workspace = "in_memory"
-        current_workspace = arcpy.env.scratchWorkspace
-
         arcpy.ImportToolbox(os.path.join(os.path.dirname(__file__), "URB.pyt"))
         arcpy.gp.toolbox = os.path.join(os.path.dirname(__file__), "URB.pyt")
 
@@ -383,10 +395,10 @@ class CDU_GENERA_tool(object):
 
         #json = ""
         poligono = ""
-        output_json = ""
-        output_testo_PI = ""
-        output_json__2_ = ""
-        output_testo_PAT = ""
+        output_json = "" #facoltativo
+        #output_testo_PI = ""
+        #output_json__2_ = ""
+        #output_testo_PAT = ""
 
         test = False
         PI_test = '''
@@ -411,8 +423,8 @@ class CDU_GENERA_tool(object):
         ]
         '''
 
-        arcpy.ImportToolbox("C:/Users/ferregutie/AppData/Roaming/ESRI/Desktop10.6/ArcToolbox/My Toolboxes/URBAN.tbx")
-        arcpy.gp.toolbox = "C:/Users/ferregutie/AppData/Roaming/ESRI/Desktop10.6/ArcToolbox/My Toolboxes/URBAN.tbx"
+        arcpy.ImportToolbox(os.path.join(os.path.dirname(__file__), "URB.pyt"))
+        arcpy.gp.toolbox = os.path.join(os.path.dirname(__file__), "URB.pyt")
 
         if test:
             identificazione = "TEST"
@@ -427,7 +439,7 @@ class CDU_GENERA_tool(object):
             identificazione = ""
 
             if coordinate_catastali:
-                CC_result = arcpy.gp.CC2FC_tool(coordinate_catastali)
+                CC_result = arcpy.gp.CC2FCtool(coordinate_catastali)
                 arcpy.AddMessage("CC_result: %s" % CC_result.getOutput(0))
                 poligono = CC_result.getOutput(0)
                 identificazione = u"così individuata nel Catasto Terreni: %s" % decodificaCatasto(coordinate_catastali)
@@ -438,9 +450,9 @@ class CDU_GENERA_tool(object):
                 poligono = contesto
 
             # Process: CDU_PI
-            PI_result = arcpy.gp.CDU_PI_tool(poligono, output_json)
-            arcpy.AddMessage("PI_result: %s" % PI_result.getOutput(1))
-            PI_def = json.loads(PI_result.getOutput(1))
+            PI_result = arcpy.gp.CDUPItool(poligono, output_json)
+            arcpy.AddMessage("PI_result: %s" % PI_result.getOutput(0))
+            PI_def = json.loads(PI_result.getOutput(0))
 
             checkInCS = False
             for defin in PI_def:
@@ -449,16 +461,16 @@ class CDU_GENERA_tool(object):
 
             if checkInCS:
                 # Process: CDU_CS
-                CS_result = arcpy.gp.CDU_CS_tool(poligono, output_json)
-                arcpy.AddMessage("CS_result: %s" % CS_result.getOutput(1))
-                CS_def = json.loads(CS_result.getOutput(1))
+                CS_result = arcpy.gp.CDUCStool(poligono, output_json)
+                arcpy.AddMessage("CS_result: %s" % CS_result.getOutput(0))
+                CS_def = json.loads(CS_result.getOutput(0))
             else:
                 CS_def = []
 
             # Process: CDU_PAT
-            PAT_result = arcpy.gp.CDU_PAT_tool(poligono, output_json__2_)
-            arcpy.AddMessage("PAT_result: %s" % PAT_result.getOutput(1))
-            PAT_def = json.loads(PAT_result.getOutput(1))
+            PAT_result = arcpy.gp.CDUPATtool(poligono, output_json)
+            arcpy.AddMessage("PAT_result: %s" % PAT_result.getOutput(0))
+            PAT_def = json.loads(PAT_result.getOutput(0))
 
         PI_desc = ''
         PI_nta = ''
@@ -518,7 +530,8 @@ class CDU_GENERA_tool(object):
         engine = Renderer()
         template2 = os.path.join(os.path.dirname(__file__),"SOMMARIO_template.odt")
         result2 = engine.render(template2, PI_def=PI_def, CS_def=CS_def, PAT_def=PAT_def)
-        sommario_target = os.path.join(tempfile.mkdtemp(),"sommario.odt")
+        #sommario_target = os.path.join(tempfile.mkdtemp(),"sommario.odt")
+        sommario_target = get_jobfile("output", "odt")
 
         with open(sommario_target,'wb') as output:
             output.write(result2)
@@ -527,7 +540,8 @@ class CDU_GENERA_tool(object):
         arcpy.AddMessage("SOMMARIO DESTINAZIONI: %s" % sommario_target)
 
         if not odt_target:
-            odt_target = os.path.join(tempfile.mkdtemp(),"CDU.odt")
+            #odt_target = os.path.join(tempfile.mkdtemp(),"CDU.odt")
+            odt_target = get_jobfile("output", "odt")
 
         template1 = os.path.join(os.path.dirname(__file__),"CDU_template.odt")
         result1 = engine.render(template1, **params)
@@ -541,10 +555,10 @@ class CDU_GENERA_tool(object):
         parameters[5].value = odt_target
 
 
-class INQUA_tool(object):
+class INQUAtool(object):
     def __init__(self):
         """Define the tool (tool name is the name of the class)."""
-        self.label = "CDU_INQUA"
+        self.label = "CDUINQUA"
         self.description = "da scrivere"
         self.canRunInBackground = False
 
@@ -642,9 +656,6 @@ class INQUA_tool(object):
     def execute(self, parameters, messages):
         """The source code of the tool."""
 
-        default_workspace = "in_memory"
-        current_workspace = arcpy.env.scratchWorkspace
-
         arcpy.ImportToolbox(os.path.join(os.path.dirname(__file__), "URB.pyt"))
         arcpy.gp.toolbox = os.path.join(os.path.dirname(__file__), "URB.pyt")
 
@@ -710,7 +721,7 @@ class INQUA_tool(object):
         #        checkboxes.append(idx)
         for param in parameters:
             #arcpy.AddMessage("param: %s %s" % (str(param.datatype),str(param.valueAsText)))
-            if param.datatype == "Booleano" and param.valueAsText == "true":
+            if param.datatype in ("Booleano", "Boolean")  and param.valueAsText == "true":
                 checkboxes.append(param.name)
         arcpy.AddMessage("checkboxes: %s" % str(checkboxes))
 
@@ -722,7 +733,7 @@ class INQUA_tool(object):
         decode_map = []
 
         if coordinate_catastali:
-            CC_result = arcpy.gp.coordinateCatastaliToLayer(coordinate_catastali)
+            CC_result = arcpy.gp.CC2FCtool(coordinate_catastali)
             probe_path = CC_result.getOutput(0)
         else:
             if not probe_path:
@@ -734,7 +745,8 @@ class INQUA_tool(object):
         with arcpy.da.SearchCursor(probe_path, ['SHAPE']) as cursor:  
             probe_polygon = next(cursor)[0]
 
-        probe_json_path = os.path.join(tempfile.mkdtemp(), "probe.json")
+        #probe_json_path = os.path.join(tempfile.mkdtemp(), "probe.json")
+        probe_json_path = get_jobfile("activity", "json")
         arcpy.FeaturesToJSON_conversion(probe_path, probe_json_path, "FORMATTED")
 
         with open(probe_json_path ,"r") as jf:
@@ -799,7 +811,8 @@ class INQUA_tool(object):
 
             #arcpy.AddMessage(json.dumps(post_parameters,indent=3))
 
-            pdf_file_path = os.path.join(tempfile.mkdtemp(), tema["label"]+".pdf")
+            #pdf_file_path = os.path.join(tempfile.mkdtemp(), tema["label"]+".pdf")
+            pdf_file_path = get_jobfile("output", "pdf")
 
             res = urllib.urlopen(base_url + "arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task/execute", urllib.urlencode(post_parameters)).read()
 
@@ -815,7 +828,8 @@ class INQUA_tool(object):
         if parameters[-1].valueAsText:
             pdf_globale = parameters[-1].valueAsText
         else:
-            pdf_globale = os.path.join(tempfile.mkdtemp(), "inquadramento.pdf")
+            #pdf_globale = os.path.join(tempfile.mkdtemp(), "inquadramento.pdf")
+            pdf_globale = get_jobfile("output", "pdf")
 
         merger = PdfFileMerger()
         for file in result_pdf:
