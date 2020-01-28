@@ -27,11 +27,11 @@ current_workspace = arcpy.env.workspace
 memory_workspace = "in_memory"
 scratch_workspace = arcpy.env.scratchWorkspace
 
-activity_workspace = "E:\\acrgisserver\\directories\\arcgisjobs\\CDUtool"
-output_workspace = "E:\\acrgisserver\\directories\\arcgisoutput\\CDUtool"
+#activity_workspace = "E:\\acrgisserver\\directories\\arcgisjobs\\CDUtool"
+#output_workspace = "E:\\acrgisserver\\directories\\arcgisoutput\\CDUtool"
 
-#activity_workspace = "D:\\Documents\\01_LAVORO\\99-sandbox\\CDUtool"
-#output_workspace = "D:\\Documents\\01_LAVORO\\99-sandbox\\CDUtool"
+activity_workspace = "D:\\Documents\\01_LAVORO\\99-sandbox\\CDUtool"
+output_workspace = "D:\\Documents\\01_LAVORO\\99-sandbox\\CDUtool"
 
 with open(os.path.join(os.path.dirname(__file__),"sit_decodifica_con_descrizioni.json"), 'r') as f:
     decodifica_pi = json.load(f)
@@ -46,10 +46,7 @@ def calc_area_totale(fc_path):
             area_totale += row[0]
     return area_totale
 
-def get_jobfile(ws, ext=""):
-    if ext:
-        ext = "." + ext
-
+def get_ws_dir (ws):
     if ws == "temp":
         ws_dir = tempfile.mkdtemp()
     else:
@@ -57,7 +54,26 @@ def get_jobfile(ws, ext=""):
 
     if ws in ("activity", "output") and not os.path.exists(ws_dir):
         os.makedirs(ws_dir)
-    
-    jobfile_path = os.path.join(ws_dir,"job_" + uuid.uuid4().hex + ext)
+    return ws_dir
+
+def get_jobfile(ws, ext=""):
+    if ext:
+        ext = "." + ext
+
+    jobfile_path = os.path.join(get_ws_dir(ws),"job_" + uuid.uuid4().hex + ext)
     return jobfile_path
     
+def ext2poly(ext, sr=None):
+    BL = arcpy.Point(ext.XMin,ext.YMin) # bottom left  
+    BR = arcpy.Point(ext.XMax,ext.YMin) # bottom right  
+    TR = arcpy.Point(ext.XMax,ext.YMax) # top right  
+    TL = arcpy.Point(ext.XMin,ext.YMax) # top left  
+    df_poly = arcpy.Polygon(arcpy.Array([[BL,BR,TR,TL,BL]]),sr) # create polygon  
+    return df_poly
+
+def create_fc (ws="memory", sr=3003, geom_type="POLYGON", fields=None):
+    fc = arcpy.management.CreateFeatureclass(get_ws_dir(ws), "job_" + uuid.uuid4().hex, geom_type, spatial_reference=sr)
+    if fields:
+        for field in fields:
+            arcpy.AddField_management(fc, *field)
+    return fc[0]

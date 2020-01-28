@@ -36,6 +36,7 @@ CDUCStool = ANALISI.CDUCStool
 CC2FCtool = ANALISI.CC2FCtool
 CDUGENERAtool = EXPORT.CDUGENERAtool
 INQUAtool = EXPORT.INQUAtool
+EXTRACTDBTtool = ANALISI.DBTextractTool
 
 class Toolbox(object):
     def __init__(self):
@@ -45,4 +46,4 @@ class Toolbox(object):
         self.alias = ""
 
         # List of tool classes associated with this toolbox
-        self.tools = [ZTO2006Tool, ZTOSCVOLTool, CDUPItool, CDUPATtool, CDUCStool, CC2FCtool, CDUGENERAtool, INQUAtool]
+        self.tools = [ZTO2006Tool, ZTOSCVOLTool, CDUPItool, CDUPATtool, CDUCStool, CC2FCtool, CDUGENERAtool, INQUAtool, EXTRACTDBTtool]

@@ -25,9 +25,18 @@ import json
 
 from sets import Set
 
-from SUPPORT import decodifica_pi, decodifica_pat, calc_area_totale, get_jobfile
+#from SUPPORT import decodifica_pi, decodifica_pat, calc_area_totale, get_jobfile, ext2poly, create_fc
 
 from SUPPORT import current_workspace, memory_workspace, scratch_workspace, activity_workspace, output_workspace, get_jobfile
+
+import SUPPORT
+reload(SUPPORT)
+decodifica_pi = SUPPORT.decodifica_pi
+decodifica_pat = SUPPORT.decodifica_pat
+calc_area_totale = SUPPORT.calc_area_totale
+get_jobfile = SUPPORT.get_jobfile
+ext2poly = SUPPORT.ext2poly
+create_fc = SUPPORT.create_fc
 
 class CDUPItool(object):
     def __init__(self):
@@ -284,6 +293,13 @@ class CDUPATtool(object):
             name="out_json",
             datatype="DEFile",
             parameterType="Optional",
+            direction="Output")
+
+        out_fc = arcpy.Parameter(
+            displayName="Risultato text",
+            name="out_txt",
+            datatype="GPString",
+            parameterType="Derived",
             direction="Output")
 
         params = [in_features, out_txt]
@@ -620,3 +636,178 @@ class CC2FCtool(object):
         parameters[2].value = esrijson_filepath
 
 
+
+
+class DBTextractTool(object):
+    def __init__(self):
+        """Define the tool (tool name is the name of the class)."""
+        self.label = "DBT-2-DXF"
+        self.description = "da scrivere"
+        self.canRunInBackground = False
+
+    def getParameterInfo(self):
+        """
+        Define parameter definitions
+        https://pro.arcgis.com/en/pro-app/arcpy/geoprocessing_and_python/defining-parameter-data-types-in-a-python-toolbox.htm
+        """
+
+        extent = arcpy.Parameter(
+            displayName="Extent",
+            name="in_features",
+            datatype="GPExtent",
+            parameterType="Required",
+            direction="Input")
+
+        srs = arcpy.Parameter(
+            displayName="Spatial reference",
+            name="srs",
+            datatype="GPSpatialReference",
+            parameterType="Optional",
+            direction="Input")
+
+        out_geojson = arcpy.Parameter(
+            displayName="Output geojson",
+            name="out_json",
+            datatype="GPString",
+            parameterType="Derived",
+            direction="Output")
+
+        out_dxf = arcpy.Parameter(
+            displayName="Output dxf",
+            name="out_dxf",
+            datatype="DEFile",
+            parameterType="Derived",
+            direction="Output")
+
+        out_lyr = arcpy.Parameter(
+            displayName="Output lyr",
+            name="out_lyr",
+            datatype="GPFeatureLayer",
+            parameterType="Derived",
+            direction="Output")
+
+        params = [extent, srs, out_geojson, out_dxf, out_lyr]
+
+        return params
+
+    def isLicensed(self):
+        """Set whether tool is licensed to execute."""
+        return True
+
+    def updateParameters(self, parameters):
+        """Modify the values and properties of parameters before internal
+        validation is performed.  This method is called whenever a parameter
+        has been changed."""
+        return
+
+    def updateMessages(self, parameters):
+        """Modify the messages created by internal validation for each tool
+        parameter.  This method is called after internal validation."""
+        return
+
+    def execute(self, parameters, messages):
+        """The source code of the tool."""
+
+
+
+        arcpy.AddMessage("default.gdb_path: %s" % arcpy.env.workspace)
+
+
+        arcpy.ImportToolbox(os.path.join(os.path.dirname(__file__), "URB.pyt"))
+        arcpy.gp.toolbox = os.path.join(os.path.dirname(__file__), "URB.pyt")
+
+        extent = parameters[0].value
+        srs = parameters[1].value
+
+        arcpy.AddMessage("control: %s %s" % (extent, srs))
+
+        ext_poly = ext2poly(extent, arcpy.SpatialReference(3003))
+            
+        sel_fc = create_fc(ws="scratch")
+        ext_fc_cursor = arcpy.da.InsertCursor(sel_fc,("SHAPE@"))
+        ext_fc_cursor.insertRow([ext_poly])
+        del ext_fc_cursor
+
+        sel_lyr = arcpy.mapping.Layer(sel_fc)
+        arcpy.AddMessage("sel_lyr: %s" % str(sel_lyr))
+
+        check_layer_list = [
+            [r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.UN_VOL", "UN_VOL_AV", 0],
+            [r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.AATT", "", 1],
+            [r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.MN_EDI_NOVOL", "", 2],
+            [r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.MN_UVOL", "MN_UVO_ALT", 3],
+            [r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.AR_VRD", "", 4],
+            #[r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.AR_MARC", "", 5],
+            #[r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.AC_VEI", "", 6],
+            [r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.CL_AGR", "", 7],
+            [r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.A_PED", "", 8],
+            [r"Connessioni database\VISIO_R_GDBT.sde\SIT.DBTOPOGRAFICO\SIT.PS_INC", "", 9],
+        ]
+
+            
+        sel_fc = get_jobfile("memory")
+        sel_fc_fields = (  
+            ("Layer", "TEXT", None, None, 10, "", "NULLABLE", "NON_REQUIRED"),  
+            ("Color", "SHORT", None, None, None, "", "NULLABLE", "NON_REQUIRED"),  
+            ("TxtValue", "TEXT", None, None, 10, "", "NULLABLE", "NON_REQUIRED"), 
+        ) 
+        intersectOutput_clean = create_fc("memory", fields=sel_fc_fields)
+
+        sel_note = get_jobfile("memory")
+        sel_note_fields = (  
+            ("Layer", "TEXT", None, None, 50, "", "NULLABLE", "NON_REQUIRED"),  
+            ("Color", "SHORT", None, None, None, "", "NULLABLE", "NON_REQUIRED"),  
+            ("TxtValue", "TEXT", None, None, 255, "", "NULLABLE", "NON_REQUIRED"), 
+            ("CADType", "TEXT", None, None, 50, "", "NULLABLE", "NON_REQUIRED"), 
+        ) 
+        intersectOutput_note = create_fc("memory", fields=sel_note_fields, geom_type="POINT")
+        cursor_note = arcpy.da.InsertCursor(intersectOutput_note, ("Layer", "Color", "TxtValue", "CADType", "SHAPE@"))
+
+        for check_layer_def in check_layer_list:
+            check_layer = check_layer_def[0]
+            arcpy.AddMessage("check_layer: %s" % check_layer)
+            desc = arcpy.Describe(check_layer)
+            inFeatures = [ check_layer, sel_lyr ]
+            intersectOutput = get_jobfile("memory")
+            clusterTolerance = 0    
+            arcpy.Intersect_analysis(inFeatures, intersectOutput, "", clusterTolerance, "input")
+
+            if check_layer_def[1]:
+                field_def = ("Layer", "Color", "TxtValue", "SHAPE@")
+                check_def = [check_layer_def[1], "SHAPE@"]
+            else:
+                field_def = ("Layer", "Color", "SHAPE@")
+                check_def = ["SHAPE@"]
+
+            cursor_clean = arcpy.da.InsertCursor(intersectOutput_clean,field_def)
+
+            with arcpy.da.SearchCursor(intersectOutput, check_def) as cursor:
+                for row in cursor:
+                    if check_layer_def[1]:
+                        row_def = [desc.name.replace("SIT.",""), check_layer_def[2], str(row[0]), cursor[1]]
+                        note_def = row_def[:-1] + ["TEXT", arcpy.PointGeometry(cursor[1].centroid)]
+                        cursor_note.insertRow(note_def)
+                    else:
+                        row_def = [desc.name.replace("SIT.",""), check_layer_def[2], cursor[0]]
+                    cursor_clean.insertRow(row_def)
+            
+        del cursor_clean
+        del cursor_note
+
+
+        extraction_json_filepath = get_jobfile("output","json")
+        arcpy.FeaturesToJSON_conversion(intersectOutput_clean, extraction_json_filepath, format_json=True, geoJSON=True)
+
+        arcpy.AddMessage(extraction_json_filepath)
+        parameters[2].value = extraction_json_filepath
+
+        extraction_dxf_filepath = get_jobfile("output","dxf")
+        arcpy.ExportCAD_conversion([intersectOutput_clean, intersectOutput_note], "DXF_R2004", extraction_dxf_filepath, "USE_FILENAMES_IN_TABLES", "OVERWRITE_EXISTING_FILES", "")
+        parameters[3].value = extraction_dxf_filepath
+
+        lyr = arcpy.mapping.Layer(intersectOutput_clean)
+        parameters[4].value = intersectOutput_clean
+
+        #if parameters[1].valueAsText:
+        #    with open(parameters[1].valueAsText,"w") as f:
+        #        f.write(json.dumps(output, indent=3))
